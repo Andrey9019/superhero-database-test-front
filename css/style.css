@@ -490,19 +490,22 @@ a {
   flex-direction: column;
 }
 
-.footer-field p {
-  font-style: normal;
+.footer-form-title {
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.02em;
-
   color: var(--light-background);
+
+  line-height: 24px;
 }
+
 .footer-field label {
   margin-bottom: 16px;
 }
+
 .footer-field input {
+  width: 264px;
   font-size: 12px;
   line-height: 2;
   letter-spacing: 0.04em;
@@ -533,6 +536,7 @@ a {
 
 .footer-form-sgv {
   fill: var(--light-background);
+  display: flex;
 }
 
 .footer-form-button {
@@ -542,7 +546,7 @@ a {
   font-weight: 500;
   letter-spacing: 0.04em;
 
-  padding: 8px 0 8px 24px;
+  padding: 8px 24px;
   gap: 16px;
   align-items: center;
   cursor: pointer;
@@ -737,16 +741,18 @@ a {
   pointer-events: none;
 }
 
+/* Modal Form */
+
 .modal {
   position: absolute;
 
   top: 50%;
   left: 50%;
+  padding: 72px 24px 24px 24px;
 
   transform: translate(-50%, -50%);
 
   width: 408px;
-  min-height: 576px;
 
   background-color: var(--modal-background);
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
@@ -790,16 +796,12 @@ a {
   border: none;
 }
 
-/* Modal Form */
-
 .modal-btn-send {
   padding: 0;
-  margin-top: 25px;
   margin-left: auto;
   margin-right: auto;
 }
 .modal-form p {
-  margin-top: 72px;
   margin-bottom: 16px;
   text-align: center;
   font-weight: 500;
@@ -808,11 +810,34 @@ a {
   color: var(--dark);
 }
 .modal-form {
-  margin-left: 24px;
-  margin-right: 24px;
 }
+
+.modal-form .modal-text,
+.modal-form .modal-tel,
+.modal-form .modal-email,
+.modal-form .modal-comment {
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.04em;
+
+  display: block;
+  margin-bottom: 4px;
+  margin-top: 8px;
+}
+
+.modal-list {
+  position: relative;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.04em;
+}
+
+.modal-form .first-child,
+.modal-form .last-child {
+  margin-top: 0px;
+}
+
 .form-input {
-  margin: 4px 0 8px;
   display: block;
   width: 100%;
   padding-top: 8px;
@@ -839,6 +864,13 @@ a {
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
+textarea {
+  resize: none;
+  width: 100%;
+  border-radius: 4px;
+  padding: 8px 16px;
+  margin-bottom: 15px;
+}
 textarea:focus {
   border-color: var(--pressed-state);
   outline: transparent;
@@ -850,20 +882,9 @@ textarea:focus {
 .modal-form {
   color: var(--subtle-Text);
 }
-.modal-text {
-  position: relative;
-}
-.modal-tel {
-  position: relative;
-}
 
-.modal-email {
-  position: relative;
-}
 .modal-icon {
   position: absolute;
-  width: 18px;
-  height: 18px;
   top: 50%;
   left: 16px;
   transform: translateY(-50%);
@@ -871,19 +892,12 @@ textarea:focus {
   pointer-events: none;
 }
 
-textarea {
-  resize: none;
-  width: 100%;
-  margin: 4px 0 15px;
-  border-radius: 4px;
-  padding: 8px 16px;
-}
-
 .form-agreement {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
+  margin-bottom: 25px;
 }
 
 .modal-form-agreement-txt {
