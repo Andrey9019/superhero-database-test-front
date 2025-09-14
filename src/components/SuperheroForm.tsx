@@ -7,10 +7,10 @@ interface SuperheroFormProps {
   onSubmit: () => void;
 }
 
-const SuperheroForm: React.FC<SuperheroFormProps> = ({
+export default function SuperheroForm({
   superhero,
   onSubmit,
-}) => {
+}: SuperheroFormProps) {
   const [formData, setFormData] = useState({
     nickname: superhero?.nickname || "",
     real_name: superhero?.real_name || "",
@@ -41,7 +41,7 @@ const SuperheroForm: React.FC<SuperheroFormProps> = ({
     if (e.target.files) {
       const newImages = Array.from(e.target.files);
       if (images.length + newImages.length > 5) {
-        setError("Максимум 5 зображень");
+        setError("Max 5 images");
         return;
       }
       setImages((prev) => [...prev, ...newImages]);
@@ -69,7 +69,7 @@ const SuperheroForm: React.FC<SuperheroFormProps> = ({
           "Error removing image:",
           err.response?.data || err.message
         );
-        setError("Помилка видалення зображення");
+        setError("Image deletion error");
       }
     }
   };
@@ -77,7 +77,7 @@ const SuperheroForm: React.FC<SuperheroFormProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (images.length + existingImages.length === 0) {
-      setError("Будь ласка, додайте хоча б одне зображення");
+      setError("Please add at least one image.");
       return;
     }
     const data = new FormData();
@@ -120,7 +120,7 @@ const SuperheroForm: React.FC<SuperheroFormProps> = ({
   return (
     <form onSubmit={handleSubmit} className="form-container">
       <label>
-        Псевдонім:
+        Nickname:
         <input
           type="text"
           name="nickname"
@@ -130,7 +130,7 @@ const SuperheroForm: React.FC<SuperheroFormProps> = ({
         />
       </label>
       <label>
-        Справжнє ім'я:
+        Real name:
         <input
           type="text"
           name="real_name"
@@ -140,7 +140,7 @@ const SuperheroForm: React.FC<SuperheroFormProps> = ({
         />
       </label>
       <label>
-        Походження:
+        Origin description:
         <input
           type="text"
           name="origin_description"
@@ -150,7 +150,7 @@ const SuperheroForm: React.FC<SuperheroFormProps> = ({
         />
       </label>
       <label>
-        Суперсили (через кому):
+        Superpowers (with comma):
         <input
           type="text"
           name="superpowers"
@@ -160,7 +160,7 @@ const SuperheroForm: React.FC<SuperheroFormProps> = ({
         />
       </label>
       <label>
-        Крилата фраза:
+        Catch phrase:
         <input
           type="text"
           name="catch_phrase"
@@ -170,7 +170,7 @@ const SuperheroForm: React.FC<SuperheroFormProps> = ({
         />
       </label>
       <label>
-        Зображення (до 5, обов'язкове):
+        Image (up to 5):
         <input
           type="file"
           name="images"
@@ -181,7 +181,7 @@ const SuperheroForm: React.FC<SuperheroFormProps> = ({
       </label>
       {existingImages.length > 0 && (
         <>
-          <h4>Зображення:</h4>
+          <h4>Image:</h4>
           <div className="image-preview-container">
             {existingImages.map((image, index) => (
               <div key={index} style={{ marginBottom: "10px" }}>
@@ -198,7 +198,7 @@ const SuperheroForm: React.FC<SuperheroFormProps> = ({
                   type="button"
                   onClick={() => removeExistingImage(index)}
                 >
-                  Видалити
+                  Delete
                 </button>
               </div>
             ))}
@@ -207,7 +207,7 @@ const SuperheroForm: React.FC<SuperheroFormProps> = ({
       )}
       {imagePreviews.length > 0 && (
         <>
-          <h4>Зображення:</h4>
+          <h4>Image:</h4>
           <div className="image-preview-container">
             {imagePreviews.map((preview, index) => (
               <div className="image-preview" key={index}>
@@ -221,7 +221,7 @@ const SuperheroForm: React.FC<SuperheroFormProps> = ({
                   }}
                 />
                 <button type="button" onClick={() => removeNewImage(index)}>
-                  Видалити
+                  Delete
                 </button>
               </div>
             ))}
@@ -229,9 +229,7 @@ const SuperheroForm: React.FC<SuperheroFormProps> = ({
         </>
       )}
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <button type="submit">{superhero ? "Оновити" : "Створити"}</button>
+      <button type="submit">{superhero ? "Update" : "Create"}</button>
     </form>
   );
-};
-
-export default SuperheroForm;
+}

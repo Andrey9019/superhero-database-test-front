@@ -1,14 +1,12 @@
-// import { Typography, Modal, IconButton } from "@mui/material";
-
-// import EditIcon from "@mui/icons-material/Edit";
-// import DeleteIcon from "@mui/icons-material/Delete";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import SuperheroForm from "./SuperheroForm";
+
 import type { Superhero } from "../types/Superhero";
+import SuperheroForm from "./SuperheroForm";
 
 interface SuperheroModalCardProps {
   openModal: boolean;
@@ -37,24 +35,24 @@ export default function SuperheroModalCard({
         <div className="modal">
           <div className="modal-content">
             <button className="close-btn" onClick={handleCloseDetail}>
-              ×
+              X
             </button>
             {selectedSuperhero && (
               <div>
                 <h2>{selectedSuperhero.nickname}</h2>
                 <p>
-                  <strong>Справжнє ім'я:</strong> {selectedSuperhero.real_name}
+                  <strong>Real name:</strong> {selectedSuperhero.real_name}
                 </p>
                 <p>
-                  <strong>Походження:</strong>{" "}
+                  <strong>Origin description:</strong>{" "}
                   {selectedSuperhero.origin_description}
                 </p>
                 <p>
-                  <strong>Суперсили:</strong>{" "}
+                  <strong>Superpowers:</strong>{" "}
                   {selectedSuperhero.superpowers.join(", ")}
                 </p>
                 <p>
-                  <strong>Крилата фраза:</strong>{" "}
+                  <strong>Catch phrase:</strong>{" "}
                   {selectedSuperhero.catch_phrase}
                 </p>
                 <Swiper
@@ -74,7 +72,7 @@ export default function SuperheroModalCard({
                   ))}
                 </Swiper>
                 <button onClick={() => handleEdit(selectedSuperhero)}>
-                  Редагувати
+                  Edit
                 </button>
                 <button
                   onClick={() => {
@@ -82,7 +80,7 @@ export default function SuperheroModalCard({
                     handleCloseDetail();
                   }}
                 >
-                  Видалити
+                  Delete
                 </button>
               </div>
             )}

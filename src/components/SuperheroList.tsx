@@ -71,12 +71,15 @@ export default function SuperheroList() {
       <button onClick={handleCreate}>Add a superhero</button>
       <div className="superhero-grid">
         {superheroes.map((superhero) => (
-          <div key={superhero._id} onClick={() => handleOpenDetail(superhero)}>
+          <div
+            className="superhero-card"
+            key={superhero._id}
+            onClick={() => handleOpenDetail(superhero)}
+          >
             {superhero.images[0] && (
               <img
                 src={`http://localhost:5001${superhero.images[0]}`}
                 alt={superhero.nickname}
-                height="440"
               />
             )}
             <p>{superhero.nickname}</p>
