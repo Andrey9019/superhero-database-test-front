@@ -81,7 +81,8 @@ export default function SuperheroList() {
           >
             {superhero.images[0] && (
               <img
-                src={`${VITE_API_URL}${superhero.images[0]}`}
+                src={superhero.images[0]}
+                // src={`${VITE_API_URL}${superhero.images[0]}`}
                 alt={superhero.nickname}
               />
             )}

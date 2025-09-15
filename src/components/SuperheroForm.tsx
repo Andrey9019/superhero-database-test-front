@@ -101,6 +101,7 @@ export default function SuperheroForm({
         ? `${VITE_API_URL}/api/superheroes/${superhero._id}`
         : `${VITE_API_URL}/api/superheroes`;
       const method = superhero ? "put" : "post";
+
       await axios[method](url, data);
       onSubmit();
       if (handleCloseDetail) handleCloseDetail();
@@ -192,7 +193,8 @@ export default function SuperheroForm({
             {existingImages.map((image, index) => (
               <div key={index} style={{ marginBottom: "10px" }}>
                 <img
-                  src={`${VITE_API_URL}${image}`}
+                  src={image}
+                  // src={`${VITE_API_URL}${image}`}
                   alt="Existing image"
                   style={{
                     width: "100px",
