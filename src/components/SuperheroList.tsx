@@ -20,6 +20,7 @@ export default function SuperheroList() {
   const fetchSuperheroes = async () => {
     try {
       const response = await axios.get(`${VITE_API_URL}/api/superheroes`);
+
       setSuperheroes(response.data);
     } catch (err) {
       console.error("Error fetching superheroes:", err);

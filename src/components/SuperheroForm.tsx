@@ -7,11 +7,13 @@ const VITE_API_URL = import.meta.env.VITE_API_URL || "http://localhost:5001";
 interface SuperheroFormProps {
   superhero?: Superhero;
   onSubmit: () => void;
+  handleCloseDetail?: () => void;
 }
 
 export default function SuperheroForm({
   superhero,
   onSubmit,
+  handleCloseDetail,
 }: SuperheroFormProps) {
   const [formData, setFormData] = useState({
     nickname: superhero?.nickname || "",
@@ -60,6 +62,7 @@ export default function SuperheroForm({
     if (superhero) {
       const newExisting = [...existingImages];
       newExisting.splice(index, 1);
+      console.log("Removing image:", newExisting);
       try {
         await axios.put(`${VITE_API_URL}/api/superheroes/${superhero._id}`, {
           images: newExisting,
@@ -90,6 +93,7 @@ export default function SuperheroForm({
       JSON.stringify(formData.superpowers.split(", ").map((s) => s.trim()))
     );
     data.append("catch_phrase", formData.catch_phrase);
+    data.append("images", JSON.stringify(existingImages));
     images.forEach((image) => data.append("images", image));
 
     try {
@@ -99,6 +103,7 @@ export default function SuperheroForm({
       const method = superhero ? "put" : "post";
       await axios[method](url, data);
       onSubmit();
+      if (handleCloseDetail) handleCloseDetail();
       setFormData({
         nickname: "",
         real_name: "",

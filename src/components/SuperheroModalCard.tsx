@@ -98,6 +98,7 @@ export default function SuperheroModalCard({
             <SuperheroForm
               superhero={editingSuperhero}
               onSubmit={handleCloseEdit}
+              handleCloseDetail={handleCloseDetail}
             />
           </div>
         </div>
