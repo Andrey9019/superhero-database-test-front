@@ -4,7 +4,7 @@ import axios from "axios";
 import type { Superhero } from "../types/Superhero";
 import SuperheroModalCard from "./SuperheroModalCard";
 
-const VITE_API_URL = import.meta.env.VITE_API_URL || "http://localhost:5001";
+const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 export default function SuperheroList() {
   const [superheroes, setSuperheroes] = useState<Superhero[]>([]);
@@ -80,7 +80,7 @@ export default function SuperheroList() {
           >
             {superhero.images[0] && (
               <img
-                src={`${VITE_API_URL}/${superhero.images[0]}`}
+                src={`${VITE_API_URL}${superhero.images[0]}`}
                 alt={superhero.nickname}
               />
             )}

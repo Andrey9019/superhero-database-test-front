@@ -187,7 +187,7 @@ export default function SuperheroForm({
             {existingImages.map((image, index) => (
               <div key={index} style={{ marginBottom: "10px" }}>
                 <img
-                  src={`${VITE_API_URL}/${image}`}
+                  src={`${VITE_API_URL}${image}`}
                   alt="Existing image"
                   style={{
                     width: "100px",

@@ -67,7 +67,7 @@ export default function SuperheroModalCard({
                   {selectedSuperhero.images.map((image, index) => (
                     <SwiperSlide key={index}>
                       <img
-                        src={`${VITE_API_URL}/${image}`}
+                        src={`${VITE_API_URL}${image}`}
                         alt={`${selectedSuperhero.nickname} image ${index + 1}`}
                       />
                     </SwiperSlide>
