@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
 
 import axios from "axios";
 import type { Superhero } from "../types/Superhero";
 import SuperheroModalCard from "./SuperheroModalCard";
+import { Plus } from "lucide-react";
 
 const VITE_API_URL = import.meta.env.VITE_API_URL;
 
@@ -71,7 +73,11 @@ export default function SuperheroList() {
 
   return (
     <main>
-      <button onClick={handleCreate}>Add a superhero</button>
+      <div className="headermain">
+        <button className="add-button" onClick={handleCreate}>
+          Add a superhero <Plus />
+        </button>
+      </div>
       <div className="superhero-grid">
         {superheroes.map((superhero) => (
           <div

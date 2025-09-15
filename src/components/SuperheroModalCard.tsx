@@ -1,6 +1,8 @@
 import { Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import { SquarePen, Trash, SquareX } from "lucide-react";
+
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -37,11 +39,28 @@ export default function SuperheroModalCard({
         <div className="modal">
           <div className="modal-content">
             <button className="close-btn" onClick={handleCloseDetail}>
-              X
+              <SquareX />
             </button>
             {selectedSuperhero && (
               <div>
-                <h2>{selectedSuperhero.nickname}</h2>
+                <div className="modal-header">
+                  <h2>{selectedSuperhero.nickname}</h2>
+                  <button
+                    className="action-btn"
+                    onClick={() => handleEdit(selectedSuperhero)}
+                  >
+                    <SquarePen />
+                  </button>
+                  <button
+                    className="action-btn"
+                    onClick={() => {
+                      handleDelete(selectedSuperhero._id!);
+                      handleCloseDetail();
+                    }}
+                  >
+                    <Trash />
+                  </button>
+                </div>
                 <p>
                   <strong>Real name:</strong> {selectedSuperhero.real_name}
                 </p>
@@ -58,7 +77,6 @@ export default function SuperheroModalCard({
                   {selectedSuperhero.catch_phrase}
                 </p>
                 <Swiper
-                  pagination={{ dynamicBullets: true }}
                   navigation={true}
                   modules={[Pagination, Navigation]}
                   spaceBetween={50}
@@ -74,17 +92,6 @@ export default function SuperheroModalCard({
                     </SwiperSlide>
                   ))}
                 </Swiper>
-                <button onClick={() => handleEdit(selectedSuperhero)}>
-                  Edit
-                </button>
-                <button
-                  onClick={() => {
-                    handleDelete(selectedSuperhero._id!);
-                    handleCloseDetail();
-                  }}
-                >
-                  Delete
-                </button>
               </div>
             )}
           </div>
