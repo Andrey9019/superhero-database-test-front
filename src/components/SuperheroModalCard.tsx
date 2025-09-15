@@ -8,6 +8,8 @@ import "swiper/css/navigation";
 import type { Superhero } from "../types/Superhero";
 import SuperheroForm from "./SuperheroForm";
 
+const VITE_API_URL = import.meta.env.VITE_API_URL || "http://localhost:5001";
+
 interface SuperheroModalCardProps {
   openModal: boolean;
   selectedSuperhero: Superhero | null;
@@ -65,7 +67,7 @@ export default function SuperheroModalCard({
                   {selectedSuperhero.images.map((image, index) => (
                     <SwiperSlide key={index}>
                       <img
-                        src={`http://localhost:5001${image}`}
+                        src={`${VITE_API_URL}/${image}`}
                         alt={`${selectedSuperhero.nickname} image ${index + 1}`}
                       />
                     </SwiperSlide>

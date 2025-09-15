@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import type { Superhero } from "../types/Superhero";
 
+const VITE_API_URL = import.meta.env.VITE_API_URL || "http://localhost:5001";
+
 interface SuperheroFormProps {
   superhero?: Superhero;
   onSubmit: () => void;
@@ -59,10 +61,9 @@ export default function SuperheroForm({
       const newExisting = [...existingImages];
       newExisting.splice(index, 1);
       try {
-        await axios.put(
-          `http://localhost:5001/api/superheroes/${superhero._id}`,
-          { images: newExisting }
-        );
+        await axios.put(`${VITE_API_URL}/api/superheroes/${superhero._id}`, {
+          images: newExisting,
+        });
         setExistingImages(newExisting);
       } catch (err: any) {
         console.error(
@@ -93,8 +94,8 @@ export default function SuperheroForm({
 
     try {
       const url = superhero
-        ? `http://localhost:5001/api/superheroes/${superhero._id}`
-        : "http://localhost:5001/api/superheroes";
+        ? `${VITE_API_URL}/api/superheroes/${superhero._id}`
+        : `${VITE_API_URL}/api/superheroes`;
       const method = superhero ? "put" : "post";
       await axios[method](url, data);
       onSubmit();
@@ -186,7 +187,7 @@ export default function SuperheroForm({
             {existingImages.map((image, index) => (
               <div key={index} style={{ marginBottom: "10px" }}>
                 <img
-                  src={`http://localhost:5001${image}`}
+                  src={`${VITE_API_URL}/${image}`}
                   alt="Existing image"
                   style={{
                     width: "100px",

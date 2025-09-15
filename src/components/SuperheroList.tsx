@@ -4,6 +4,8 @@ import axios from "axios";
 import type { Superhero } from "../types/Superhero";
 import SuperheroModalCard from "./SuperheroModalCard";
 
+const VITE_API_URL = import.meta.env.VITE_API_URL || "http://localhost:5001";
+
 export default function SuperheroList() {
   const [superheroes, setSuperheroes] = useState<Superhero[]>([]);
   const [openModal, setOpenModal] = useState(false);
@@ -17,7 +19,7 @@ export default function SuperheroList() {
 
   const fetchSuperheroes = async () => {
     try {
-      const response = await axios.get("http://localhost:5001/api/superheroes");
+      const response = await axios.get(`${VITE_API_URL}/api/superheroes`);
       setSuperheroes(response.data);
     } catch (err) {
       console.error("Error fetching superheroes:", err);
@@ -51,7 +53,7 @@ export default function SuperheroList() {
 
   const handleDelete = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:5001/api/superheroes/${id}`);
+      await axios.delete(`${VITE_API_URL}/api/superheroes/${id}`);
       fetchSuperheroes();
     } catch (err: any) {
       console.error(
@@ -78,7 +80,7 @@ export default function SuperheroList() {
           >
             {superhero.images[0] && (
               <img
-                src={`http://localhost:5001${superhero.images[0]}`}
+                src={`${VITE_API_URL}/${superhero.images[0]}`}
                 alt={superhero.nickname}
               />
             )}
