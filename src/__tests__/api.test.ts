@@ -3,9 +3,11 @@ import {
   fetchSuperheroes,
   updateSuperhero,
   createSuperhero,
-  API_URL,
+  // API_URL,
 } from "../utils/api";
 import type { Superhero } from "../types/Superhero";
+
+export const API_URL = process.env.VITE_API_URL;
 
 // Мок axios
 jest.mock("axios");
@@ -52,6 +54,7 @@ describe("API Functions", () => {
       `${API_URL}/api/superheroes`,
       formData
     );
+
     expect(result).toEqual(mockSuperheroes[0]);
   });
   test("updateSuperhero updates superhero successfully", async () => {

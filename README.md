@@ -53,6 +53,8 @@ Use the form to add/edit superheroes, view list and details.
 
 To run unit and integration tests:
 
+Note: Tests use process.env.VITE_API_URL in src/utils/api.ts for Jest compatibility. For production, import.meta.env.VITE_API_URL (commented in api.ts) can be used, with VITE_API_URL set in Vercel Environment Variables.
+
 ```js
 npm test
 ```
