@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const API_URL = process.env.VITE_API_URL;
+export const API_URL = import.meta.env.VITE_API_URL;
 
 export async function fetchSuperheroes() {
   const response = await axios.get(`${API_URL}/api/superheroes`);
