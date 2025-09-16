@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect, useCallback } from "react";
-import { fetchSuperheroes, deleteSuperhero } from "../src/utils/api";
-import type { Superhero } from "../src/types/Superhero";
+import { fetchSuperheroes, deleteSuperhero } from "../utils/api";
+import type { Superhero } from "../types/Superhero";
 
 export function useSuperheroState() {
   const [superheroes, setSuperheroes] = useState<Superhero[]>([]);

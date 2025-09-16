@@ -1,4 +1,4 @@
-import { useSuperheroState } from "../../hooks/useSuperheroState";
+import { useSuperheroState } from "../hooks/useSuperheroState";
 import SuperheroModalCard from "./SuperheroModalCard";
 import { Plus } from "lucide-react";
 
