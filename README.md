@@ -49,6 +49,14 @@ Open http://localhost:5173 in the browser.
 
 Use the form to add/edit superheroes, view list and details.
 
+## Testing
+
+To run unit and integration tests:
+
+```js
+npm test
+```
+
 ## Deployment
 
 Frontend deployed on Vercel: https://superhero-database-test-front.vercel.app
