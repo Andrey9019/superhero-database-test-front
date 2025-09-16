@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect } from "react";
 import axios from "axios";
+import React, { useState, useEffect } from "react";
 import type { Superhero } from "../types/Superhero";
 
 const VITE_API_URL = import.meta.env.VITE_API_URL || "http://localhost:5001";
@@ -29,6 +29,7 @@ export default function SuperheroForm({
   );
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
   const [error, setError] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (images.length > 0) {
@@ -85,6 +86,7 @@ export default function SuperheroForm({
       setError("Please add at least one image.");
       return;
     }
+    setIsLoading(true);
     const data = new FormData();
     data.append("nickname", formData.nickname);
     data.append("real_name", formData.real_name);
@@ -122,6 +124,8 @@ export default function SuperheroForm({
       setError(
         "Error: " + (err.response?.data?.error || "Something went wrong")
       );
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -195,7 +199,6 @@ export default function SuperheroForm({
               <div key={index} style={{ marginBottom: "10px" }}>
                 <img
                   src={image}
-                  // src={`${VITE_API_URL}${image}`}
                   alt="Existing image"
                   style={{
                     width: "100px",
@@ -238,7 +241,15 @@ export default function SuperheroForm({
         </>
       )}
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <button type="submit">{superhero ? "Update" : "Create"}</button>
+      <button type="submit" disabled={isLoading}>
+        {isLoading ? (
+          <div className="spinner small"></div>
+        ) : superhero ? (
+          "Оновити"
+        ) : (
+          "Створити"
+        )}
+      </button>
     </form>
   );
 }

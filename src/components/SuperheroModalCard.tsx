@@ -1,36 +1,38 @@
 import { Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { SquarePen, Trash, SquareX } from "lucide-react";
+import type { Superhero } from "../types/Superhero";
+import SuperheroForm from "./SuperheroForm";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import type { Superhero } from "../types/Superhero";
-import SuperheroForm from "./SuperheroForm";
-
-// const VITE_API_URL = import.meta.env.VITE_API_URL || "http://localhost:5001";
+import { SquarePen, Trash, SquareX } from "lucide-react";
 
 interface SuperheroModalCardProps {
   openModal: boolean;
-  selectedSuperhero: Superhero | null;
   openEditModal: boolean;
-  handleCloseDetail: () => void;
-  handleEdit: (superhero: Superhero) => void;
-  handleDelete: (id: string) => void;
+
   handleCloseEdit: () => void;
+  handleCloseDetail: () => void;
+  handleDelete: (id: string) => void;
+  handleEdit: (superhero: Superhero) => void;
+
+  selectedSuperhero: Superhero | null;
   editingSuperhero: Superhero | undefined;
 }
 
 export default function SuperheroModalCard({
   openModal,
-  selectedSuperhero,
   openEditModal,
-  handleCloseDetail,
-  handleEdit,
-  handleDelete,
+
   handleCloseEdit,
+  handleCloseDetail,
+  handleDelete,
+  handleEdit,
+
+  selectedSuperhero,
   editingSuperhero,
 }: SuperheroModalCardProps) {
   return (
@@ -86,7 +88,6 @@ export default function SuperheroModalCard({
                     <SwiperSlide key={index}>
                       <img
                         src={image}
-                        // src={`${VITE_API_URL}${image}`}
                         alt={`${selectedSuperhero.nickname} image ${index + 1}`}
                       />
                     </SwiperSlide>
@@ -101,7 +102,7 @@ export default function SuperheroModalCard({
         <div className="modal">
           <div className="modal-content">
             <button className="close-btn" onClick={handleCloseEdit}>
-              ×
+              <SquareX />
             </button>
             <SuperheroForm
               superhero={editingSuperhero}
