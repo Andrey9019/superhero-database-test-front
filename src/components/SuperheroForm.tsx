@@ -196,7 +196,7 @@ export default function SuperheroForm({
           <h4>Image:</h4>
           <div className="image-preview-container">
             {existingImages.map((image, index) => (
-              <div key={index} style={{ marginBottom: "10px" }}>
+              <div className="image-preview" key={index}>
                 <img
                   src={image}
                   alt="Existing image"
@@ -245,9 +245,9 @@ export default function SuperheroForm({
         {isLoading ? (
           <div className="spinner small"></div>
         ) : superhero ? (
-          "Оновити"
+          "Update"
         ) : (
-          "Створити"
+          "Create"
         )}
       </button>
     </form>
